@@ -10,7 +10,7 @@ general:
        priority_level_1: []
     ss_example:
       priority_level_2: []
-      priority_level_1: [st_example]
+      priority_level_1: []
       default: [st_example_default]
 
 
@@ -24,7 +24,7 @@ general:
 
   output_numerics: []
 
-  output_booleans: [opb_example]
+  output_booleans: []
 
 
 global_timing:

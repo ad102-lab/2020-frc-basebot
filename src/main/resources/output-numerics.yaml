@@ -1,7 +1,4 @@
 talon:
-  opn_example:
-    device_number: 5
-    inverted: true
 
 #  opn_drivetrain_left_primary:
 #    device_number: 0
