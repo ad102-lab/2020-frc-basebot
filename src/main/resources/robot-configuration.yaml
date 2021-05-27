@@ -11,7 +11,7 @@ general:
     ss_example:
       priority_level_2: []
       priority_level_1: []
-      default: [st_example_default]
+      default: [st_example]
 
 
   subsystems: [ss_example]
