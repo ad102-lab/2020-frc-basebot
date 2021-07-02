@@ -30,8 +30,8 @@ public class Robot_Configuration_Example implements Behavior {
 	public Robot_Configuration_Example(InputValues inputValues, OutputValues outputValues, Config config, RobotConfiguration robotConfiguration) {
 		fSharedInputValues = inputValues;
 		fSharedOutputValues = outputValues;
-		fXAxis = robotConfiguration.getString("global_drivetrain", "x");
-		fYAxis = robotConfiguration.getString("global_drivetrain", "y");
+		fXAxis = robotConfiguration.getString("global_robot_configuration_example", "x");
+		fYAxis = robotConfiguration.getString("global_robot_configuration_example", "y");
 
 		mStateName = "Drivetrain";
 

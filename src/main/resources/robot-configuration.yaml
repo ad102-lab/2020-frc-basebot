@@ -12,15 +12,16 @@ general:
       priority_level_2: []
       priority_level_1: [st_example]
       default: [st_example_default]
+    ss_robot_configuration_example:
+      priority_level_1: []
+      default: [st_robot_configuration_example]
 
 
-
-
-  subsystems: [ss_example]
+  subsystems: [ss_example, ss_robot_configruation_example]
 
   input_booleans: [ipb_operator_right_trigger, ipb_operator_left_trigger]
 
-  input_numerics: []
+  input_numerics: [ipn_driver_left_y, ipn_driver_right_x]
 
   input_vectors: []
 
@@ -40,6 +41,11 @@ global_timing:
 
 global_example:
   what_this_button_does: ipb_operator_left_trigger
+
+global_robot_configuration_example:
+  x: ipn_driver_right_x
+  y: ipn_driver_right_y
+
 
 log:
 #  ips_selected_auto: true
