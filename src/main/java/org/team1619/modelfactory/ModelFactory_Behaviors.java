@@ -34,6 +34,9 @@ public class ModelFactory_Behaviors extends AbstractModelFactory {
 
 			case "bh_example":
 				return new Behavior_Example(fSharedInputValues, fSharedOutputValues, config, fRobotConfiguration);
+			case "bh_robot_configuration_example":
+				return new Robot_Configuration_Example(fSharedInputValues, fSharedOutputValues, config, fRobotConfiguration);
+
 
 			// State not found
 			default:

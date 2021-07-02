@@ -11,6 +11,9 @@ single_state:
     behavior: bh_example
     behavior_config:
 
+  st_robot_configuration_example:
+    behavior: bh_robot_configuration_example
+
 
 done_for_time_state:
 
