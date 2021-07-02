@@ -17,7 +17,7 @@ general:
       default: [st_robot_configuration_example]
 
 
-  subsystems: [ss_example, ss_robot_configruation_example]
+  subsystems: [ss_example, ss_robot_configuration_example]
 
   input_booleans: [ipb_operator_right_trigger, ipb_operator_left_trigger]
 
