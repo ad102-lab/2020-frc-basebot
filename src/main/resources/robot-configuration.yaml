@@ -44,7 +44,7 @@ global_example:
 
 global_robot_configuration_example:
   x: ipn_driver_right_x
-  y: ipn_driver_right_y
+  y: ipn_driver_left_y
 
 
 log:
