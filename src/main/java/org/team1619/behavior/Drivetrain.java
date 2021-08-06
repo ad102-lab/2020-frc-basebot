@@ -22,8 +22,8 @@ public class Drivetrain implements Behavior {
 
 	private final InputValues fSharedInputValues;
 	private final OutputValues fSharedOutputValues;
-	private String fYAxis;
-	private String fXAxis;
+	private String leftYAxis;
+	private String rightYAxis;
 	private Timer mTimer;
 
 	private int mConfigurationValue;
@@ -31,8 +31,8 @@ public class Drivetrain implements Behavior {
 	public Drivetrain(InputValues inputValues, OutputValues outputValues, Config config, RobotConfiguration robotConfiguration) {
 		fSharedInputValues = inputValues;
 		fSharedOutputValues = outputValues;
-		fYAxis = robotConfiguration.getString("global_drivetrain", "y");
-		fXAxis = robotConfiguration.getString("global_drivetrain", "x");
+		leftYAxis = robotConfiguration.getString("global_drivetrain", "y-left");
+		rightYAxis = robotConfiguration.getString("global_drivetrain", "y-right");
 
 		mConfigurationValue = 0;
 		mTimer = new Timer();
@@ -48,8 +48,8 @@ public class Drivetrain implements Behavior {
 
 	@Override
 	public void update() {
-		double leftMotorSpeed = fSharedInputValues.getNumeric(fYAxis);
-		double rightMotorSpeed = fSharedInputValues.getNumeric(fXAxis);
+		double leftMotorSpeed = fSharedInputValues.getNumeric(leftYAxis);
+		double rightMotorSpeed = fSharedInputValues.getNumeric(rightYAxis);
 
 		fSharedOutputValues.setNumeric("opn_drivetrain_left", "percent", leftMotorSpeed);
 		fSharedOutputValues.setNumeric("opn_drivetrain_right", "percent", rightMotorSpeed);
