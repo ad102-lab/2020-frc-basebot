@@ -15,9 +15,9 @@ general:
 
   subsystems: [ss_drivetrain]
 
-  input_booleans: [ipb_operator_right_trigger, ipb_operator_left_trigger]
+  input_booleans: []
 
-  input_numerics: [ipn_driver_left_y]
+  input_numerics: [ipn_driver_right_x, ipn_driver_left_y]
 
   input_vectors: []
 
@@ -36,6 +36,7 @@ global_timing:
   frame_cycle_time_threshold_info_thread: 80
 
 global_drivetrain:
+  x: ipn_driver_right_x
   y: ipn_driver_left_y
 
 log:

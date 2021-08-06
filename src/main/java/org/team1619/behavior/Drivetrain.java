@@ -12,7 +12,7 @@ import org.uacr.utilities.logging.Logger;
 import java.util.Set;
 
 /**
- * Example behavior to copy for other behaviors
+ * A tank drive behavior
  */
 
 public class Drivetrain implements Behavior {
@@ -22,8 +22,9 @@ public class Drivetrain implements Behavior {
 
 	private final InputValues fSharedInputValues;
 	private final OutputValues fSharedOutputValues;
+	private String fYAxis;
+	private String fXAxis;
 	private Timer mTimer;
-	private final String fYAxis;
 
 	private int mConfigurationValue;
 
@@ -31,6 +32,7 @@ public class Drivetrain implements Behavior {
 		fSharedInputValues = inputValues;
 		fSharedOutputValues = outputValues;
 		fYAxis = robotConfiguration.getString("global_drivetrain", "y");
+		fXAxis = robotConfiguration.getString("global_drivetrain", "x");
 
 		mConfigurationValue = 0;
 		mTimer = new Timer();
@@ -46,10 +48,28 @@ public class Drivetrain implements Behavior {
 
 	@Override
 	public void update() {
-		double motorSpeed = fSharedInputValues.getNumeric(fYAxis);
+		double yAxis = fSharedInputValues.getNumeric(fYAxis);
+		double xAxis = fSharedInputValues.getNumeric(fXAxis);
 
-		fSharedOutputValues.setNumeric("opn_drivetrain_left", "percent", motorSpeed);
-		fSharedOutputValues.setNumeric("opn_drivetrain_right", "percent", motorSpeed);
+		double leftMotorSpeed = yAxis + xAxis;
+		double rightMotorSpeed = yAxis - xAxis;
+
+		if (leftMotorSpeed > 1) {
+			rightMotorSpeed = rightMotorSpeed - (leftMotorSpeed - 1);
+			leftMotorSpeed = 1;
+		} else if (leftMotorSpeed < -1) {
+			rightMotorSpeed = rightMotorSpeed - (1 + leftMotorSpeed);
+			leftMotorSpeed = -1;
+		} else if (rightMotorSpeed > 1) {
+			leftMotorSpeed = leftMotorSpeed - (rightMotorSpeed - 1);
+			rightMotorSpeed = 1;
+		} else if (rightMotorSpeed < -1) {
+			leftMotorSpeed = leftMotorSpeed - (1 + rightMotorSpeed);
+			rightMotorSpeed = -1;
+		}
+
+		fSharedOutputValues.setNumeric("opn_drivetrain_left", "percent", leftMotorSpeed);
+		fSharedOutputValues.setNumeric("opn_drivetrain_right", "percent", rightMotorSpeed);
 	}
 
 	@Override
