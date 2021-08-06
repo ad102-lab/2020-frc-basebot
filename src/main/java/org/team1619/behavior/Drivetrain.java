@@ -22,8 +22,8 @@ public class Drivetrain implements Behavior {
 
 	private final InputValues fSharedInputValues;
 	private final OutputValues fSharedOutputValues;
-	private String leftYAxis;
-	private String rightYAxis;
+	private String fYAxis;
+	private String fXAxis;
 	private Timer mTimer;
 
 	private int mConfigurationValue;
@@ -31,8 +31,8 @@ public class Drivetrain implements Behavior {
 	public Drivetrain(InputValues inputValues, OutputValues outputValues, Config config, RobotConfiguration robotConfiguration) {
 		fSharedInputValues = inputValues;
 		fSharedOutputValues = outputValues;
-		leftYAxis = robotConfiguration.getString("global_drivetrain", "y-left");
-		rightYAxis = robotConfiguration.getString("global_drivetrain", "y-right");
+		fYAxis = robotConfiguration.getString("global_drivetrain", "y");
+		fXAxis = robotConfiguration.getString("global_drivetrain", "x");
 
 		mConfigurationValue = 0;
 		mTimer = new Timer();
@@ -48,8 +48,25 @@ public class Drivetrain implements Behavior {
 
 	@Override
 	public void update() {
-		double leftMotorSpeed = fSharedInputValues.getNumeric(leftYAxis);
-		double rightMotorSpeed = fSharedInputValues.getNumeric(rightYAxis);
+		double yAxis = fSharedInputValues.getNumeric(fYAxis);
+		double xAxis = fSharedInputValues.getNumeric(fXAxis);
+
+		double leftMotorSpeed = yAxis + xAxis;
+		double rightMotorSpeed = yAxis - xAxis;
+
+		if (leftMotorSpeed > 1) {
+			rightMotorSpeed = rightMotorSpeed - (leftMotorSpeed - 1);
+			leftMotorSpeed = 1;
+		} else if (leftMotorSpeed < -1) {
+			rightMotorSpeed = rightMotorSpeed - (1 + leftMotorSpeed);
+			leftMotorSpeed = -1;
+		} else if (rightMotorSpeed > 1) {
+			leftMotorSpeed = leftMotorSpeed - (rightMotorSpeed - 1);
+			rightMotorSpeed = 1;
+		} else if (rightMotorSpeed < -1) {
+			leftMotorSpeed = leftMotorSpeed - (1 + rightMotorSpeed);
+			rightMotorSpeed = -1;
+		}
 
 		fSharedOutputValues.setNumeric("opn_drivetrain_left", "percent", leftMotorSpeed);
 		fSharedOutputValues.setNumeric("opn_drivetrain_right", "percent", rightMotorSpeed);

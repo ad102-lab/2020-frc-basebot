@@ -7,7 +7,7 @@ general:
     sequences:
       priority_level_1: []
     parallels:
-       priority_level_1: []
+      priority_level_1: []
     ss_drivetrain:
       priority_level_1: []
       default: [st_drivetrain]
@@ -17,7 +17,7 @@ general:
 
   input_booleans: []
 
-  input_numerics: [ipn_driver_left_y, ipn_driver_right_y]
+  input_numerics: [ipn_driver_right_x, ipn_driver_left_y]
 
   input_vectors: []
 
@@ -36,8 +36,8 @@ global_timing:
   frame_cycle_time_threshold_info_thread: 80
 
 global_drivetrain:
-  y-left: ipn_driver_left_y
-  y-right: ipn_driver_right_y
+  x: ipn_driver_right_x
+  y: ipn_driver_left_y
 
 log:
 #  ips_selected_auto: true
@@ -50,4 +50,3 @@ global_webdashboard:
     actions: []
 
   match_values:
-
