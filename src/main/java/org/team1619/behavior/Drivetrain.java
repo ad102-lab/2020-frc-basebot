@@ -48,25 +48,8 @@ public class Drivetrain implements Behavior {
 
 	@Override
 	public void update() {
-		double yAxis = fSharedInputValues.getNumeric(fYAxis);
-		double xAxis = fSharedInputValues.getNumeric(fXAxis);
-
-		double leftMotorSpeed = yAxis + xAxis;
-		double rightMotorSpeed = yAxis - xAxis;
-
-		if (leftMotorSpeed > 1) {
-			rightMotorSpeed = rightMotorSpeed - (leftMotorSpeed - 1);
-			leftMotorSpeed = 1;
-		} else if (leftMotorSpeed < -1) {
-			rightMotorSpeed = rightMotorSpeed - (1 + leftMotorSpeed);
-			leftMotorSpeed = -1;
-		} else if (rightMotorSpeed > 1) {
-			leftMotorSpeed = leftMotorSpeed - (rightMotorSpeed - 1);
-			rightMotorSpeed = 1;
-		} else if (rightMotorSpeed < -1) {
-			leftMotorSpeed = leftMotorSpeed - (1 + rightMotorSpeed);
-			rightMotorSpeed = -1;
-		}
+		double leftMotorSpeed = fSharedInputValues.getNumeric(fYAxis);
+		double rightMotorSpeed = fSharedInputValues.getNumeric(fXAxis);
 
 		fSharedOutputValues.setNumeric("opn_drivetrain_left", "percent", leftMotorSpeed);
 		fSharedOutputValues.setNumeric("opn_drivetrain_right", "percent", rightMotorSpeed);
