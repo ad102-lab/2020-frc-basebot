@@ -2,10 +2,8 @@ single_state:
 
 # ------ Example ------
 
-  st_example:
-    behavior: bh_example
-    behavior_config:
-      config_key: 1000
+  st_drivetrain:
+    behavior: bh_drivetrain
 
   st_example_default:
     behavior: bh_example
